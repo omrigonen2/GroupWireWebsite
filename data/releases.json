@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "product": "GroupWire",
+  "currentVersion": "0.3.0",
+  "releases": [
+    {
+      "version": "0.3.0",
+      "date": "2026-07-10",
+      "changes": {
+        "en": [
+          "Added a changelog button to the application header.",
+          "Added an automatic “What’s new” overlay for each newly installed version."
+        ],
+        "he": [
+          "נוסף כפתור יומן שינויים לכותרת האפליקציה.",
+          "נוספה שכבת „מה חדש” שנפתחת אוטומטית עבור כל גרסה חדשה שמותקנת."
+        ]
+      }
+    }
+  ]
+}

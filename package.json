@@ -1,0 +1,13 @@
+{
+  "name": "groupwire-release-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static public release website for GroupWire",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node scripts/check.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

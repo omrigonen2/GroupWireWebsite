@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GroupWire product updates and release notes">
+  <meta name="theme-color" content="#075e54">
+  <title>GroupWire — Release notes</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="GroupWire home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" role="img">
+          <path d="M6 7.5A4.5 4.5 0 0 1 10.5 3h11A4.5 4.5 0 0 1 26 7.5v10a4.5 4.5 0 0 1-4.5 4.5H15l-6.5 5v-5A4.5 4.5 0 0 1 4 17.5v-10Z"/>
+          <path d="M10 10h12M10 15h8"/>
+        </svg>
+      </span>
+      <span>GroupWire</span>
+    </a>
+    <button class="language-switch" id="language-switch" type="button" aria-label="Switch language">
+      עברית
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow" data-copy="eyebrow">Product updates</p>
+      <h1 id="page-title" data-copy="title">What’s new in GroupWire</h1>
+      <p class="hero-copy" data-copy="intro">
+        Follow every improvement, new capability, and important fix released to GroupWire.
+      </p>
+      <div class="version-card" aria-live="polite">
+        <span data-copy="currentVersion">Current version</span>
+        <strong id="current-version">—</strong>
+      </div>
+    </section>
+
+    <section class="releases-section" aria-labelledby="releases-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" data-copy="historyEyebrow">Release history</p>
+          <h2 id="releases-title" data-copy="historyTitle">Latest changes</h2>
+        </div>
+      </div>
+      <div id="release-list" class="release-list" aria-live="polite">
+        <p class="loading" data-copy="loading">Loading release notes…</p>
+      </div>
+      <p class="error-message" id="release-error" hidden data-copy="error">
+        Release notes are temporarily unavailable.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> GroupWire</span>
+    <span data-copy="footer">Clear updates. Better publishing.</span>
+  </footer>
+</body>
+</html>
