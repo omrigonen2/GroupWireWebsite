@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-11T08:01:56.121Z",
+  "appUrl": "https://bo.groupwire.cloud",
+  "features": [
+    {
+      "slug": "multi-channel-publishing",
+      "href": "/features/whatsapp-publishing",
+      "title": "Publish to every community from one workspace",
+      "description": "Manage multiple WhatsApp channels, groups, and destination lists without switching tools."
+    },
+    {
+      "slug": "ai-content-assistance",
+      "href": "/features/ai-content",
+      "title": "Create polished posts with AI",
+      "description": "Use reusable AI agents to draft, refine, translate, and adapt content for each audience."
+    },
+    {
+      "slug": "scheduling",
+      "href": "/features/scheduling",
+      "title": "Plan and schedule ahead",
+      "description": "Prepare a publishing calendar and automatically deliver reviewed content at the right time."
+    },
+    {
+      "slug": "media-publishing",
+      "href": "/features/whatsapp-publishing",
+      "title": "Publish rich media",
+      "description": "Send ordered image and video albums, with optional branded watermarks."
+    },
+    {
+      "slug": "templates",
+      "href": "/features/ai-content",
+      "title": "Keep every post consistent",
+      "description": "Build reusable content templates with dynamic fields for faster, on-brand publishing."
+    },
+    {
+      "slug": "team-workflows",
+      "href": "/features/team-workspaces",
+      "title": "Work together safely",
+      "description": "Use workspace and channel roles, manager review queues, and publishing history across your team."
+    },
+    {
+      "slug": "cross-platform-publishing",
+      "href": "/integrations",
+      "title": "Reach beyond WhatsApp",
+      "description": "Publish supported content to WordPress and Facebook from the same workflow."
+    },
+    {
+      "slug": "analytics-integrations",
+      "href": "/features/analytics",
+      "title": "Measure and integrate",
+      "description": "Track publishing activity and connect external systems through APIs and webhooks on eligible plans."
+    },
+    {
+      "slug": "mobile-pwa",
+      "href": "/features/mobile-pwa",
+      "title": "Work from mobile or desktop",
+      "description": "Install the mobile-first web app, receive push notifications, and keep an offline fallback available."
+    },
+    {
+      "slug": "multilingual-workspaces",
+      "href": "/features/team-workspaces",
+      "title": "Publish across languages",
+      "description": "Use GroupWire in English or Hebrew, with full right-to-left support for Hebrew workspaces."
+    }
+  ],
+  "plans": [
+    {
+      "slug": "starter",
+      "name": "Basic",
+      "description": "For solo operators and small communities.",
+      "monthlyPrice": {
+        "amountCents": 2900,
+        "currency": "USD",
+        "taxInclusive": false
+      },
+      "annualPrice": {
+        "amountCents": 29000,
+        "currency": "USD",
+        "taxInclusive": false
+      },
+      "trialDays": 14,
+      "quotas": {
+        "users": 2,
+        "channels": 1,
+        "agentsPerChannel": 2,
+        "templates": 3,
+        "destinations": 10,
+        "destinationLists": 2,
+        "postsPerMonth": 30,
+        "scheduledQueue": 10,
+        "destinationsPerPost": 5,
+        "aiGenerationsPerMonth": 50,
+        "mediaPerPost": 3,
+        "imageSizeMb": 5,
+        "videoSizeMb": 0,
+        "storageGb": 1,
+        "wordpressSites": 0,
+        "facebookPages": 0,
+        "auditRetentionDays": 0,
+        "historyRetentionDays": 30
+      },
+      "features": {
+        "videoWatermark": false,
+        "aiAgentBuilder": false,
+        "atlasSearch": false,
+        "wordpressPublish": false,
+        "facebookPublish": false,
+        "apiAccess": false,
+        "webhooks": false,
+        "analyticsAdvanced": false,
+        "dataExport": false,
+        "require2fa": false,
+        "unlimitedAgents": false,
+        "unlimitedTemplates": false,
+        "unlimitedDestinationLists": false
+      }
+    },
+    {
+      "slug": "pro",
+      "name": "Pro",
+      "description": "For small teams with daily publishing needs.",
+      "monthlyPrice": {
+        "amountCents": 7900,
+        "currency": "USD",
+        "taxInclusive": false
+      },
+      "annualPrice": {
+        "amountCents": 79000,
+        "currency": "USD",
+        "taxInclusive": false
+      },
+      "trialDays": 14,
+      "quotas": {
+        "users": 10,
+        "channels": 3,
+        "agentsPerChannel": 9999,
+        "templates": 9999,
+        "destinations": 50,
+        "destinationLists": 10,
+        "postsPerMonth": 200,
+        "scheduledQueue": 50,
+        "destinationsPerPost": 20,
+        "aiGenerationsPerMonth": 500,
+        "mediaPerPost": 10,
+        "imageSizeMb": 10,
+        "videoSizeMb": 50,
+        "storageGb": 10,
+        "wordpressSites": 1,
+        "facebookPages": 1,
+        "auditRetentionDays": 30,
+        "historyRetentionDays": 90
+      },
+      "features": {
+        "videoWatermark": true,
+        "aiAgentBuilder": true,
+        "atlasSearch": false,
+        "wordpressPublish": true,
+        "facebookPublish": true,
+        "apiAccess": false,
+        "webhooks": false,
+        "analyticsAdvanced": false,
+        "dataExport": false,
+        "require2fa": false,
+        "unlimitedAgents": true,
+        "unlimitedTemplates": true,
+        "unlimitedDestinationLists": false
+      }
+    },
+    {
+      "slug": "business",
+      "name": "Business",
+      "description": "For agencies and multi-brand teams.",
+      "monthlyPrice": {
+        "amountCents": 24900,
+        "currency": "USD",
+        "taxInclusive": false
+      },
+      "annualPrice": {
+        "amountCents": 249000,
+        "currency": "USD",
+        "taxInclusive": false
+      },
+      "trialDays": 14,
+      "quotas": {
+        "users": 50,
+        "channels": 10,
+        "agentsPerChannel": 9999,
+        "templates": 9999,
+        "destinations": 200,
+        "destinationLists": 9999,
+        "postsPerMonth": 1000,
+        "scheduledQueue": 200,
+        "destinationsPerPost": 50,
+        "aiGenerationsPerMonth": 2000,
+        "mediaPerPost": 10,
+        "imageSizeMb": 10,
+        "videoSizeMb": 50,
+        "storageGb": 100,
+        "wordpressSites": 5,
+        "facebookPages": 5,
+        "auditRetentionDays": 365,
+        "historyRetentionDays": 365
+      },
+      "features": {
+        "videoWatermark": true,
+        "aiAgentBuilder": true,
+        "atlasSearch": true,
+        "wordpressPublish": true,
+        "facebookPublish": true,
+        "apiAccess": true,
+        "webhooks": true,
+        "analyticsAdvanced": true,
+        "dataExport": true,
+        "require2fa": true,
+        "unlimitedAgents": true,
+        "unlimitedTemplates": true,
+        "unlimitedDestinationLists": true
+      }
+    }
+  ],
+  "legal": {
+    "terms": {
+      "html": "",
+      "version": "",
+      "effectiveDate": null
+    },
+    "privacy": {
+      "html": "",
+      "version": "",
+      "effectiveDate": null
+    }
+  }
+}

@@ -1,19 +1,61 @@
 {
   "schemaVersion": 1,
   "product": "GroupWire",
-  "currentVersion": "0.3.0",
+  "currentVersion": "0.5.0",
   "releases": [
+    {
+      "version": "0.5.0",
+      "date": "2026-07-11",
+      "changes": {
+        "en": [
+          "Launched the new English GroupWire website with product, feature, pricing, resource, legal, and release pages.",
+          "Added live public plan and feature updates so the website stays aligned with GroupWire.",
+          "Added contact and demo requests with secure storage and follow-up notifications.",
+          "Added system-managed Terms of Service and Privacy Policy content for the public website."
+        ],
+        "he": [
+          "הושק אתר GroupWire החדש באנגלית עם עמודי מוצר, תכונות, תמחור, משאבים, מסמכים משפטיים וגרסאות.",
+          "נוספו עדכונים חיים לתוכניות ולתכונות ציבוריות כדי שהאתר יישאר מסונכרן עם GroupWire.",
+          "נוספו בקשות יצירת קשר והדגמה עם אחסון מאובטח והתראות להמשך טיפול.",
+          "נוסף ניהול מערכתי של תנאי השירות ומדיניות הפרטיות עבור האתר הציבורי."
+        ]
+      }
+    },
+    {
+      "version": "0.4.0",
+      "date": "2026-07-11",
+      "changes": {
+        "en": [
+          "Launched the SaaS platform: self-service signup, plan catalog, billing (Stripe, PayPal, Cardcom), usage limits, and entitlements.",
+          "Added workspace onboarding, analytics, approvals, calendar, public API keys, and outbound webhooks.",
+          "Added Postmark transactional email with verification, welcome, invite, trial, and billing templates.",
+          "Added system integrations UI with connection tests, including real Web Push (VAPID) delivery checks.",
+          "Workspace managers can optionally bring their own OpenAI API key to override the system default."
+        ],
+        "he": [
+          "הושקה פלטפורמת SaaS: הרשמה עצמית, תוכניות מנוי, חיוב (Stripe, PayPal, Cardcom), מגבלות שימוש והרשאות.",
+          "נוספו onboarding ל-workspace, אנליטיקה, אישורים, לוח שנה, מפתחות API ציבוריים ו-webhooks יוצאים.",
+          "נוסף דואר טרנזקציוני ב-Postmark עם תבניות אימות, ברכה, הזמנה, ניסיון וחיוב.",
+          "נוסף ממשק אינטגרציות מערכת עם בדיקות חיבור, כולל שליחת Web Push (VAPID) אמיתית.",
+          "מנהלי workspace יכולים להגדיר מפתח OpenAI משלהם כדי לדרוס את ברירת המחדל של המערכת."
+        ]
+      }
+    },
     {
       "version": "0.3.0",
       "date": "2026-07-10",
       "changes": {
         "en": [
-          "Added a changelog button to the application header.",
-          "Added an automatic “What’s new” overlay for each newly installed version."
+          "Rebranded the app to GroupWire with updated logos, icons, and PWA assets.",
+          "Added a changelog button and an automatic “What’s new” overlay for each new version.",
+          "Added an in-app update prompt when a newer deployment is available.",
+          "Started automated release-note publishing to the separate GroupWire website."
         ],
         "he": [
-          "נוסף כפתור יומן שינויים לכותרת האפליקציה.",
-          "נוספה שכבת „מה חדש” שנפתחת אוטומטית עבור כל גרסה חדשה שמותקנת."
+          "האפליקציה מותגה מחדש כ-GroupWire עם לוגו, אייקונים ונכסי PWA מעודכנים.",
+          "נוסף כפתור יומן שינויים ושכבת „מה חדש” שנפתחת אוטומטית בכל גרסה חדשה.",
+          "נוספה התראה בתוך האפליקציה כאשר פריסה חדשה זמינה.",
+          "הופעלה פרסום אוטומטי של יומן גרסאות לאתר GroupWire הנפרד."
         ]
       }
     }

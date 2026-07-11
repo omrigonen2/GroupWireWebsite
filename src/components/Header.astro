@@ -1,0 +1,86 @@
+---
+const appUrl = 'https://bo.groupwire.cloud';
+const menus = [
+  {
+    label: 'Product',
+    href: '/product',
+    items: [
+      ['Overview', '/product'],
+      ['WhatsApp publishing', '/features/whatsapp-publishing'],
+      ['AI content creation', '/features/ai-content'],
+      ['Scheduling and calendar', '/features/scheduling'],
+      ['Analytics and history', '/features/analytics'],
+      ['Mobile PWA', '/features/mobile-pwa'],
+    ],
+  },
+  {
+    label: 'Features',
+    href: '/features',
+    items: [
+      ['All features', '/features'],
+      ['Team workspaces', '/features/team-workspaces'],
+      ['Review workflow', '/features#operate'],
+      ['Notifications', '/features#operate'],
+    ],
+  },
+  {
+    label: 'Solutions',
+    href: '/solutions/teams',
+    items: [
+      ['Community managers', '/solutions/community-managers'],
+      ['Small teams', '/solutions/teams'],
+      ['Agencies', '/solutions/agencies'],
+    ],
+  },
+  {
+    label: 'Integrations',
+    href: '/integrations',
+    items: [
+      ['Overview', '/integrations'],
+      ['WordPress', '/integrations/wordpress'],
+      ['Facebook Page', '/integrations/facebook'],
+    ],
+  },
+  {
+    label: 'Developers',
+    href: '/developers',
+    items: [
+      ['API and webhooks', '/developers'],
+      ['API documentation', `${appUrl}/api/docs`],
+    ],
+  },
+];
+---
+<header class="site-header" data-header>
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="GroupWire home">
+      <img class="brand-icon" src="/groupwire-icon.svg" alt="" width="38" height="38" />
+      <span>GroupWire</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+      <span class="sr-only">Toggle navigation</span>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+      <div class="nav-groups">
+        {menus.map((menu) => (
+          <div class="nav-group">
+            <a href={menu.href}>{menu.label}</a>
+            <button type="button" aria-expanded="false" aria-label={`Open ${menu.label} menu`}>
+              <svg viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1 5 5 5-5"/></svg>
+            </button>
+            <div class="nav-dropdown">
+              {menu.items.map(([label, href]) => <a href={href}>{label}</a>)}
+            </div>
+          </div>
+        ))}
+        <a class="nav-direct" href="/pricing">Pricing</a>
+        <a class="nav-direct" href="/resources">Resources</a>
+      </div>
+      <div class="nav-actions">
+        <a class="login-link" href={`${appUrl}/login`}>Log in</a>
+        <a class="button button-small" href={`${appUrl}/signup`}>Start free</a>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,59 @@
+---
+const { type = 'contact' } = Astro.props;
+const isDemo = type === 'demo';
+---
+<form class="lead-form card" data-lead-form data-type={type} novalidate>
+  <div class="form-grid">
+    <label>
+      <span>Name <b aria-hidden="true">*</b></span>
+      <input name="name" autocomplete="name" required />
+    </label>
+    <label>
+      <span>Work email <b aria-hidden="true">*</b></span>
+      <input name="email" type="email" autocomplete="email" required />
+    </label>
+    <label>
+      <span>Organization</span>
+      <input name="company" autocomplete="organization" />
+    </label>
+    <label>
+      <span>Role</span>
+      <input name="role" autocomplete="organization-title" />
+    </label>
+    <label>
+      <span>Number of channels</span>
+      <input name="channelCount" type="number" min="0" max="1000000" inputmode="numeric" />
+    </label>
+    <label>
+      <span>Team size</span>
+      <input name="teamSize" type="number" min="1" max="1000000" inputmode="numeric" />
+    </label>
+    <label class="form-wide">
+      <span>Interested plan</span>
+      <select name="interestedPlan">
+        <option value="">Not sure yet</option><option value="starter">Basic</option><option value="pro">Pro</option><option value="business">Business</option>
+      </select>
+    </label>
+    <label class="form-wide">
+      <span>Current WhatsApp publishing workflow</span>
+      <textarea name="workflow" rows="3" placeholder="How does your team publish today?"></textarea>
+    </label>
+    <label class="form-wide">
+      <span>{isDemo ? 'What would you like to see?' : 'Message'} <b aria-hidden="true">*</b></span>
+      <textarea name="message" rows="5" required></textarea>
+    </label>
+    <label class="honeypot" aria-hidden="true">
+      <span>Website</span>
+      <input name="website" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+  <label class="consent-row">
+    <input name="consent" type="checkbox" value="true" required />
+    <span>I agree that GroupWire may use these details to respond to this request.</span>
+  </label>
+  <div class="form-footer">
+    <p>We use your details only to respond to this request.</p>
+    <button class="button" type="submit">{isDemo ? 'Request a demo' : 'Send message'} <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+</form>

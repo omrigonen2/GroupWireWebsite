@@ -1,0 +1,43 @@
+---
+import website from '../../data/website.json';
+const planFeatures: [string, string[]][] = [
+  ['starter', ['WhatsApp publishing workflow', 'AI-assisted content', 'Templates and saved destinations', 'Scheduling', 'Core analytics', 'Installable PWA']],
+  ['pro', ['Everything in Basic', 'AI agent builder', 'WordPress integration', 'Facebook Page integration', 'Video watermarking', 'Expanded team capacity']],
+  ['business', ['Everything in Pro', 'Advanced analytics', 'API keys and webhooks', 'Audit history', 'CSV and JSON exports', 'Required workspace 2FA']],
+];
+const featuresBySlug: Record<string, string[]> = Object.fromEntries(planFeatures);
+---
+<section class="pricing-shell" data-pricing-root>
+  <div class="billing-toggle" aria-label="Billing frequency">
+    <button type="button" data-billing="monthly" aria-pressed="true">Monthly</button>
+    <button type="button" data-billing="annual" aria-pressed="false">Annual <span>Save 16%</span></button>
+  </div>
+  <div class="pricing-grid" data-pricing-grid>
+    {website.plans.map((plan) => (
+      <article class:list={['price-card', plan.slug === 'pro' && 'featured']} data-plan={plan.slug}>
+        {plan.slug === 'pro' && <div class="popular-label">Most popular</div>}
+        <div class="plan-heading">
+          <span class="plan-icon" aria-hidden="true">{plan.slug === 'starter' ? '◇' : plan.slug === 'pro' ? '✦' : '◆'}</span>
+          <div><h2 data-plan-name>{plan.name}</h2><p data-plan-description>{plan.description}</p></div>
+        </div>
+        <div class="plan-price">
+          <strong data-plan-price data-monthly={plan.monthlyPrice.amountCents} data-annual={plan.annualPrice.amountCents}>${plan.monthlyPrice.amountCents / 100}</strong>
+          <span>/ month</span>
+        </div>
+        <p class="billing-note" data-billing-note>{plan.trialDays}-day free trial · billed monthly</p>
+        <a class:list={['button', plan.slug !== 'pro' && 'button-dark']} href="https://bo.groupwire.cloud/signup">
+          {plan.slug === 'business' ? 'Start Business' : `Start with ${plan.name}`}
+        </a>
+        <ul class="check-list">
+          {featuresBySlug[plan.slug].map((item) => <li>{item}</li>)}
+        </ul>
+        <div class="quota-row">
+          <span><b data-quota="users">{plan.quotas.users}</b> users</span>
+          <span><b data-quota="channels">{plan.quotas.channels}</b> channels</span>
+          <span><b data-quota="postsPerMonth">{plan.quotas.postsPerMonth}</b> posts/mo</span>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p class="pricing-source">Prices exclude tax where applicable. Plan details update from GroupWire’s public website API when available.</p>
+</section>

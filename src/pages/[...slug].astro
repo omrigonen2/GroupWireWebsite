@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductMockup from '../components/ProductMockup.astro';
+import Pricing from '../components/Pricing.astro';
+import FaqList from '../components/FaqList.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { pages, pageByPath } from '../data/pages.js';
+import website from '../../data/website.json';
+import releases from '../../data/releases.json';
+
+type LegalKey = keyof typeof website.legal;
+type LegalPage = [string, string, LegalKey | null];
+const legalPages: LegalPage[] = [
+  ['legal/terms', 'Terms of Service', 'terms'],
+  ['legal/privacy', 'Privacy Policy', 'privacy'],
+  ['legal/cookies', 'Cookie Policy', null],
+  ['legal/data-processing', 'Data Processing Addendum', null],
+  ['legal/subprocessors', 'Subprocessors', null],
+  ['legal/security', 'Legal Security Overview', null],
+  ['legal/acceptable-use', 'Acceptable Use Policy', null],
+];
+export function getStaticPaths() {
+  const specialPaths = [
+    'pricing', 'faq', 'contact', 'demo', 'releases',
+    'legal/terms', 'legal/privacy', 'legal/cookies', 'legal/data-processing',
+    'legal/subprocessors', 'legal/security', 'legal/acceptable-use',
+  ];
+  return [...pages.map((page) => page.path), ...specialPaths].map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const slug: string = Astro.params.slug ?? '';
+const page = pageByPath.get(slug);
+const legal = legalPages.find(([path]) => path === slug);
+const isPricing = slug === 'pricing';
+const isFaq = slug === 'faq';
+const isContact = slug === 'contact';
+const isDemo = slug === 'demo';
+const isReleases = slug === 'releases';
+
+const title = page?.title
+  || (isPricing ? 'Pricing'
+    : isFaq ? 'Frequently Asked Questions'
+      : isContact ? 'Contact GroupWire'
+        : isDemo ? 'Book a GroupWire Demo'
+          : isReleases ? 'GroupWire Release Notes'
+            : legal?.[1] || 'GroupWire');
+const description = page?.description
+  || (isPricing ? 'Compare GroupWire plans for WhatsApp publishing, AI-assisted content, scheduling, analytics, integrations, API, webhooks, exports, and team management.'
+    : isFaq ? 'Answers to common questions about GroupWire, WhatsApp publishing, AI agents, scheduling, analytics, integrations, PWA, API, webhooks, and billing.'
+      : isContact || isDemo ? 'Talk to GroupWire about WhatsApp publishing workflows, Business plans, API, webhooks, analytics, and multichannel publishing.'
+        : isReleases ? 'Follow every improvement, new capability, and important fix released to GroupWire.'
+          : `${title} for the GroupWire WhatsApp publishing workspace.`);
+const path = `/${slug}`;
+const segments: string[] = slug.split('/');
+const breadcrumbSchema: Record<string, unknown>[] = segments.length > 1 ? [{
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: segments.map((segment: string, index: number) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: segment.replaceAll('-', ' ').replace(/\b\w/g, (letter: string) => letter.toUpperCase()),
+    item: `https://groupwire.cloud/${segments.slice(0, index + 1).join('/')}`,
+  })),
+}] : [];
+const faqItems = [
+  ['What is GroupWire?', 'GroupWire is a WhatsApp-first publishing workspace for teams and communities.'],
+  ['How does GroupWire connect to WhatsApp?', 'Each channel links a WhatsApp Web session by scanning a QR code.'],
+  ['Can managers review content?', 'Approval settings and a manager review queue support review before publishing.'],
+  ['Does GroupWire support 2FA?', 'Yes. Users can configure TOTP, and Business workspaces can require 2FA.'],
+];
+if (isFaq) {
+  breadcrumbSchema.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(([question, answer]) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  });
+}
+const legalKey = legal?.[2] ?? null;
+---
+<Layout title={title} description={description} path={path} schema={breadcrumbSchema} article={page?.article}>
+  {page && (
+    <>
+      <section class:list={['inner-hero', page.article && 'article-hero']}>
+        <div class="inner-glow" aria-hidden="true"></div>
+        <div class="container" data-reveal>
+          {segments.length > 1 && <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href={`/${segments[0]}`}>{segments[0]}</a></nav>}
+          <p class="eyebrow"><span></span> {page.eyebrow}</p>
+          <h1>{page.title}</h1>
+          <p class="hero-lead">{page.description}</p>
+          <div class="hero-actions">
+            <a class="button" href={page.ctaHref}>{page.cta} <span aria-hidden="true">→</span></a>
+            {page.secondaryCta && <a class="text-link arrow-link" href={page.secondaryHref}>{page.secondaryCta} <span>→</span></a>}
+          </div>
+          {page.article && <p class="article-meta">8 minute read · GroupWire editorial</p>}
+        </div>
+      </section>
+
+      {page.mockup && <section class="container wide inner-mockup" data-reveal><ProductMockup /></section>}
+
+      {page.steps && (
+        <section class="section">
+          <div class="container center-heading" data-reveal><p class="eyebrow">How it works</p><h2>Six steps to a clearer workflow.</h2></div>
+          <div class="container steps-grid" data-reveal>
+            {page.steps.map(([number, heading, body]) => <article><span>{number}</span><h3>{heading}</h3><p>{body}</p></article>)}
+          </div>
+        </section>
+      )}
+
+      {page.linkCards && (
+        <section class="section">
+          <div class="container link-card-grid" data-reveal>
+            {page.linkCards.map(([heading, body, href], index) => (
+              <a href={href} class="link-card"><span>0{index + 1}</span><h2>{heading}</h2><p>{body}</p><b aria-hidden="true">↗</b></a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {page.code && (
+        <section class="container code-showcase" data-reveal>
+          <div class="code-copy"><p class="eyebrow light">A focused public API</p><h2>Workspace context when your systems need it.</h2><p>Use a scoped Business API key and the current documented endpoint surface.</p></div>
+          <pre aria-label="API request example"><code><span>curl</span> https://bo.groupwire.cloud/api/v1/workspace \<br />  -H <em>"X-GroupWire-Api-Key: gw_••••••••"</em></code></pre>
+        </section>
+      )}
+
+      {page.sections && (
+        <section class:list={['section', page.article && 'article-content']}>
+          <div class:list={['container', page.article ? 'prose-layout' : 'section-card-grid']} data-reveal>
+            {page.sections.map((section, index) => (
+              <article id={index === 2 ? 'operate' : undefined} class="section-card">
+                {!page.article && <span class="section-index">0{index + 1}</span>}
+                <h2>{section.title}</h2>
+                {section.body && <p>{section.body}</p>}
+                {section.items && <ul class="check-list">{section.items.map((item) => <li>{item}</li>)}</ul>}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section class="page-cta">
+        <div class="container center-heading" data-reveal><p class="eyebrow light">Move publishing forward</p><h2>{page.cta}</h2><p>Bring channels, content, destinations, schedules, and history into one clear workspace.</p><a class="button button-light" href={page.ctaHref}>{page.cta} <span>→</span></a></div>
+      </section>
+    </>
+  )}
+
+  {isPricing && (
+    <>
+      <section class="inner-hero pricing-hero">
+        <div class="inner-glow" aria-hidden="true"></div>
+        <div class="container center-heading" data-reveal><p class="eyebrow"><span></span> Simple, transparent pricing</p><h1>Choose the right workspace<br />for your team.</h1><p class="hero-lead">Start with the essentials, then unlock connected publishing, advanced analytics, API, webhooks, and exports as operations grow.</p></div>
+      </section>
+      <div class="container wide" data-reveal><Pricing /></div>
+      <section class="section comparison-section">
+        <div class="container center-heading" data-reveal><p class="eyebrow">Plan progression</p><h2>Capabilities that grow with you.</h2></div>
+        <div class="container comparison-grid" data-reveal>
+          <article><h3>Every plan</h3><ul class="check-list"><li>WhatsApp publishing workflow</li><li>AI-assisted drafting</li><li>Preview and history</li><li>Core analytics</li><li>Mobile-first PWA</li></ul></article>
+          <article><h3>Pro adds</h3><ul class="check-list"><li>AI agent builder</li><li>WordPress and Facebook</li><li>Video watermarking</li><li>Expanded channels and capacity</li></ul></article>
+          <article><h3>Business adds</h3><ul class="check-list"><li>API and webhooks</li><li>Advanced analytics</li><li>Audit history and exports</li><li>Required workspace 2FA</li></ul></article>
+        </div>
+      </section>
+      <section class="section faq-section"><div class="container narrow center-heading" data-reveal><p class="eyebrow">Pricing questions</p><h2>Plan details, answered.</h2></div><div class="container narrow" data-reveal><FaqList compact={true} /></div></section>
+    </>
+  )}
+
+  {isFaq && (
+    <>
+      <section class="inner-hero"><div class="inner-glow" aria-hidden="true"></div><div class="container center-heading" data-reveal><p class="eyebrow"><span></span> Help center</p><h1>Questions, meet answers.</h1><p class="hero-lead">{description}</p></div></section>
+      <section class="section"><div class="container narrow" data-reveal><FaqList /></div></section>
+      <section class="page-cta"><div class="container center-heading"><p class="eyebrow light">Still deciding?</p><h2>See GroupWire in your workflow.</h2><a class="button button-light" href="/demo">Book a demo →</a></div></section>
+    </>
+  )}
+
+  {(isContact || isDemo) && (
+    <>
+      <section class="inner-hero form-hero"><div class="inner-glow" aria-hidden="true"></div><div class="container" data-reveal><p class="eyebrow"><span></span> {isDemo ? 'Guided walkthrough' : 'Contact GroupWire'}</p><h1>{isDemo ? 'See how GroupWire fits your publishing workflow' : 'Talk to us about your publishing workflow'}</h1><p class="hero-lead">Tell us how your team publishes today, how many channels you manage, and whether you need connected publishing, analytics, API, webhooks, or exports.</p></div></section>
+      <section class="section form-section">
+        <div class="container form-layout" data-reveal>
+          <aside><p class="eyebrow">What to expect</p><h2>A useful conversation, grounded in your operation.</h2><ul class="check-list"><li>Share your current publishing workflow</li><li>Identify the right workspace structure</li><li>Review relevant plans and integrations</li><li>Get clear next steps</li></ul><p class="form-aside-note">Your details are sent securely to GroupWire and used only to respond to this request.</p></aside>
+          <LeadForm type={isDemo ? 'demo' : 'contact'} />
+        </div>
+      </section>
+    </>
+  )}
+
+  {isReleases && (
+    <>
+      <section class="inner-hero releases-hero"><div class="inner-glow" aria-hidden="true"></div><div class="container" data-reveal><p class="eyebrow"><span></span> Product updates</p><h1>What’s new in GroupWire</h1><p class="hero-lead">{description}</p><div class="version-badge">Current version <strong>v{releases.currentVersion}</strong></div></div></section>
+      <section class="section"><div class="container narrow release-list" data-reveal>
+        {releases.releases.map((release) => (
+          <article class="release-card"><div><span>Release</span><h2>v{release.version}</h2><time datetime={release.date}>{new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${release.date}T00:00:00Z`))}</time></div><ul>{release.changes.en.map((change) => <li>{change}</li>)}</ul></article>
+        ))}
+      </div></section>
+    </>
+  )}
+
+  {legal && (
+    <>
+      <section class="inner-hero legal-hero"><div class="inner-glow" aria-hidden="true"></div><div class="container narrow" data-reveal><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/legal/terms">Legal</a></nav><p class="eyebrow"><span></span> Legal</p><h1>{legal[1]}</h1><p class="hero-lead">{legal[2] ? 'The current document is loaded from GroupWire’s public legal source.' : 'This document is reserved for a policy reviewed and approved by qualified counsel.'}</p></div></section>
+      <section class="section legal-section"><div class="container narrow">
+        {legalKey ? (
+          <article class="legal-document prose" data-legal-document={legalKey} aria-busy="true" set:html={website.legal[legalKey]}></article>
+        ) : (
+          <article class="legal-placeholder">
+            <span class="review-badge">Legal review required</span>
+            <h2>This policy is not yet published.</h2>
+            <p>GroupWire will publish this document after its content has been reviewed and approved by qualified counsel. This placeholder is not legal advice and does not create contractual terms.</p>
+            <a class="button button-dark" href="/contact">Contact GroupWire</a>
+          </article>
+        )}
+      </div></section>
+    </>
+  )}
+</Layout>

@@ -1,0 +1,57 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import website from '../../data/website.json';
+import '../styles/global.css';
+
+const {
+  title,
+  description,
+  path = '/',
+  schema = [],
+  article = false,
+} = Astro.props;
+const canonical = new URL(path, Astro.site);
+const pageTitle = title.includes('GroupWire') ? title : `${title} | GroupWire`;
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'GroupWire',
+  url: 'https://groupwire.cloud',
+  description: 'AI-assisted WhatsApp publishing workspace for teams and communities.',
+};
+const schemas = [organizationSchema, ...schema];
+---
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#123c35" />
+    <meta name="color-scheme" content="light" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:site_name" content="GroupWire" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://groupwire.cloud/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://groupwire.cloud/og-image.svg" />
+    <title>{pageTitle}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <script is:inline id="website-fallback" type="application/json" set:html={JSON.stringify(website)} />
+    <script src="/site.js" defer is:inline></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

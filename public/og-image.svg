@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">GroupWire</title>
+  <desc id="desc">Run WhatsApp publishing from one workspace.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e8f6ef"/>
+      <stop offset="1" stop-color="#f5f0df"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity=".32" stroke="#fff">
+    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
+    <path d="M100 0v630M200 0v630M300 0v630M400 0v630M500 0v630M600 0v630M700 0v630M800 0v630M900 0v630M1000 0v630M1100 0v630"/>
+  </g>
+  <g transform="translate(80 70)">
+    <rect width="74" height="74" rx="22" fill="#123c35"/>
+    <path d="M22 25h34M22 36h25M22 47h17" stroke="#a7f3d9" stroke-width="6" stroke-linecap="round"/>
+    <text x="94" y="51" fill="#123c35" font-family="Inter,Segoe UI,sans-serif" font-size="42" font-weight="800">GroupWire</text>
+  </g>
+  <text x="80" y="295" fill="#123c35" font-family="Inter,Segoe UI,sans-serif" font-size="76" font-weight="800" letter-spacing="-4">
+    <tspan x="80">Run WhatsApp publishing</tspan>
+    <tspan x="80" dy="86">from one workspace.</tspan>
+  </text>
+  <text x="82" y="505" fill="#4d6f66" font-family="Inter,Segoe UI,sans-serif" font-size="28">Create · Preview · Publish · Track</text>
+  <rect x="82" y="548" width="220" height="6" rx="3" fill="#62caaa"/>
+</svg>

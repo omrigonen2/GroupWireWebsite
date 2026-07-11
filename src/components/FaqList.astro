@@ -1,0 +1,52 @@
+---
+const { compact = false } = Astro.props;
+type Question = [string, string];
+type FaqGroup = [string, Question[]];
+const groups: FaqGroup[] = [
+  ['General', [
+    ['What is GroupWire?', 'GroupWire is a WhatsApp-first publishing workspace for teams and communities. It helps users create, preview, publish, schedule, and track WhatsApp content from one web app.'],
+    ['Who is GroupWire for?', 'Solo community managers, small teams, agencies, and multi-brand teams that publish regularly to WhatsApp groups or channels.'],
+    ['Is GroupWire only for WhatsApp?', 'WhatsApp is the core workflow. Eligible plans can also support WordPress publishing and Facebook Page cross-posting.'],
+    ['Can I use GroupWire on mobile?', 'Yes. GroupWire is an installable mobile-first PWA with responsive navigation, offline fallback, and browser push support.'],
+  ]],
+  ['WhatsApp publishing', [
+    ['How does GroupWire connect to WhatsApp?', 'Each channel links a WhatsApp Web session by scanning a QR code. GroupWire does not claim an official WhatsApp partnership.'],
+    ['Can each channel have its own WhatsApp account?', 'Yes. Each channel is an isolated publishing unit with its own WhatsApp Web connection.'],
+    ['Can I save groups and channels?', 'Yes. Save WhatsApp destinations and organize recurring audiences into named destination lists.'],
+    ['Can I schedule and retry posts?', 'Yes. Schedule content in the channel timezone and retry failed or partially failed publishing attempts.'],
+  ]],
+  ['Content and teams', [
+    ['Does GroupWire include AI content creation?', 'Yes. Configurable AI agents help generate and refine text in a chat-style editor. Templates store reusable structures and formatting.'],
+    ['Can managers review content?', 'Approval settings and a manager review queue support review before publishing. This is a review workflow, not a guaranteed hard publishing block.'],
+    ['What roles are available?', 'Tenant managers, channel managers, and content editors. Managers and editors are scoped to assigned channels.'],
+    ['Can I attach images and videos?', 'Yes. Image watermarking uses the channel logo, and video watermarking is available on eligible plans.'],
+  ]],
+  ['Integrations and security', [
+    ['Does GroupWire integrate with WordPress and Facebook?', 'Eligible plans can generate or publish WordPress posts and optionally cross-post to a connected Facebook Page.'],
+    ['Does GroupWire have an API?', 'Business workspaces can create API keys and outbound webhooks. API requests use the X-GroupWire-Api-Key header.'],
+    ['Does GroupWire support 2FA?', 'Yes. Users can configure TOTP with an authenticator app, and Business workspaces can require 2FA.'],
+    ['Can I bring my own OpenAI API key?', 'Workspace managers can configure and test an optional OpenAI API key override in workspace settings.'],
+  ]],
+  ['Billing', [
+    ['Can I change plans later?', 'Yes. Tenant managers can review billing and change plans from the GroupWire billing area.'],
+    ['Which payment providers are supported?', 'Checkout may use Stripe, PayPal, or Cardcom depending on the provider active for the service.'],
+    ['Which plan includes API and webhooks?', 'API keys and outbound webhooks are Business features.'],
+  ]],
+];
+const visibleGroups: FaqGroup[] = compact ? [['Questions before you start', [groups[0][1][0], groups[1][1][0], groups[2][1][1], groups[4][1][0]]]] : groups;
+---
+<div class="faq-groups">
+  {visibleGroups.map(([title, questions]) => (
+    <section class="faq-group">
+      <h2>{title}</h2>
+      <div class="accordion">
+        {questions.map(([question, answer]) => (
+          <details>
+            <summary>{question}<span aria-hidden="true"></span></summary>
+            <div class="answer"><p>{answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>

@@ -1,0 +1,63 @@
+---
+const { compact = false } = Astro.props;
+---
+<div class:list={['product-stage', compact && 'product-stage-compact']} aria-label="GroupWire publishing dashboard preview" role="img">
+  <div class="app-window">
+    <div class="window-bar">
+      <div class="window-dots"><i></i><i></i><i></i></div>
+      <span class="window-title">Harbor Community</span>
+      <span class="live-pill"><i></i> Connected</span>
+    </div>
+    <div class="app-shell">
+      <aside class="app-sidebar">
+        <div class="mini-brand"><span class="brand-mark"><i></i><i></i><i></i></span></div>
+        <span class="side-item active">⌂</span>
+        <span class="side-item">◫</span>
+        <span class="side-item">＋</span>
+        <span class="side-item">↗</span>
+        <span class="side-item bottom">•••</span>
+      </aside>
+      <div class="app-main">
+        <div class="mock-heading">
+          <div><small>Good morning, Maya</small><strong>Publishing overview</strong></div>
+          <button type="button" tabindex="-1">＋ New post</button>
+        </div>
+        <div class="metric-row">
+          <div><small>Scheduled</small><strong>12</strong><em>Next 7 days</em></div>
+          <div><small>Published</small><strong>184</strong><em>+18% this month</em></div>
+          <div><small>Success rate</small><strong>98.6%</strong><em>Across 8 lists</em></div>
+        </div>
+        <div class="workspace-grid">
+          <div class="draft-card">
+            <div class="card-label"><span>Draft in progress</span><b>AI assisted</b></div>
+            <h3>Weekend events roundup</h3>
+            <p>Here’s what’s happening around the harbor this weekend ✨</p>
+            <div class="draft-line wide"></div><div class="draft-line"></div>
+            <div class="draft-actions"><span>📎 1 image</span><span>8 destinations</span></div>
+            <div class="publish-row"><button type="button" tabindex="-1">Preview post</button><span>Schedule <b>⌄</b></span></div>
+          </div>
+          <div class="activity-card">
+            <div class="card-label"><span>Recent activity</span><a>View history</a></div>
+            <div class="activity-item"><i class="success">✓</i><span><strong>Morning update</strong><small>Sent to 8 destinations</small></span><time>9:02</time></div>
+            <div class="activity-item"><i class="scheduled">◷</i><span><strong>Member spotlight</strong><small>Scheduled for 14:30</small></span><time>Today</time></div>
+            <div class="activity-item"><i class="success">✓</i><span><strong>Road closure notice</strong><small>Sent to 5 destinations</small></span><time>Yesterday</time></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-shell">
+    <div class="phone-top"><span>9:41</span><i></i></div>
+    <div class="phone-appbar"><span class="brand-mark"><i></i><i></i><i></i></span><b>GroupWire</b><em>•••</em></div>
+    <small>HARBOR COMMUNITY</small>
+    <h3>Ready to publish?</h3>
+    <div class="phone-card">
+      <span class="post-badge">Ready for preview</span>
+      <strong>Weekend events roundup</strong>
+      <p>Here’s what’s happening around the harbor this weekend…</p>
+      <div class="phone-meta"><span>8 destinations</span><span>1 image</span></div>
+      <button type="button" tabindex="-1">Preview post</button>
+    </div>
+    <div class="phone-nav"><span>⌂<b>Home</b></span><span>◫<b>Channels</b></span><span class="phone-create">＋</span><span>↗<b>History</b></span><span>•••<b>More</b></span></div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductMockup from '../components/ProductMockup.astro';
+import FaqList from '../components/FaqList.astro';
+import website from '../../data/website.json';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'GroupWire',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web, iOS Browser, Android Browser, Desktop Browser',
+  description: 'AI-assisted WhatsApp publishing workspace for teams and communities.',
+  offers: website.plans.map((plan) => ({
+    '@type': 'Offer',
+    name: plan.name,
+    price: plan.monthlyPrice.amountCents / 100,
+    priceCurrency: plan.monthlyPrice.currency,
+  })),
+};
+---
+<Layout
+  title="GroupWire | WhatsApp Publishing Workspace for Teams"
+  description="Create, schedule, publish, and track WhatsApp content from one AI-assisted workspace. Manage channels, templates, destinations, analytics, and team roles."
+  path="/"
+  schema={[softwareSchema]}
+>
+  <section class="home-hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-copy-block" data-reveal>
+      <p class="eyebrow"><span></span> WhatsApp-first publishing for teams</p>
+      <h1>Run WhatsApp publishing<br />from <em>one workspace</em></h1>
+      <p class="hero-lead">Create branded posts with AI, publish to saved WhatsApp groups and channels, schedule campaigns, and track delivery from a mobile-first web app.</p>
+      <div class="hero-actions">
+        <a class="button" href="https://bo.groupwire.cloud/signup">Start free <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="/product"><i aria-hidden="true">▶</i> See how it works</a>
+      </div>
+      <p class="trust-line"><span class="avatar-stack" aria-hidden="true"><i>M</i><i>J</i><i>A</i></span> Built for teams managing multiple channels, destinations, and publishing workflows.</p>
+    </div>
+    <div class="container wide hero-product" data-reveal>
+      <ProductMockup />
+    </div>
+  </section>
+
+  <section class="problem-section section">
+    <div class="container split-heading" data-reveal>
+      <div><p class="eyebrow">The operational gap</p><h2>WhatsApp publishing<br />gets messy <em>fast.</em></h2></div>
+      <p>When publishing happens across chats, copied templates, separate documents, and manual reminders, teams lose consistency and visibility.</p>
+    </div>
+    <div class="container problem-grid" data-reveal>
+      <article><span>01</span><h3>Scattered creation</h3><p>Drafts live across personal chats and documents. Teams repeat formatting by hand.</p></article>
+      <article><span>02</span><h3>Audience drift</h3><p>Destination lists are difficult to maintain and rebuild for every publish.</p></article>
+      <article><span>03</span><h3>Limited visibility</h3><p>Managers cannot easily see what was sent, what failed, or what is scheduled.</p></article>
+    </div>
+  </section>
+
+  <section class="workflow-section section">
+    <div class="container center-heading" data-reveal>
+      <p class="eyebrow light">A structured workflow</p>
+      <h2>From idea to delivery,<br /><em>without the chaos.</em></h2>
+      <p>GroupWire gives every publishing operation a clear path.</p>
+    </div>
+    <div class="container workflow-grid" data-reveal>
+      <article><span>01</span><div class="workflow-icon">✦</div><h3>Create</h3><p>Draft and refine content with channel-specific AI agents and reusable templates.</p></article>
+      <article><span>02</span><div class="workflow-icon">◎</div><h3>Preview</h3><p>Review the final message, placeholders, destinations, and media before publishing.</p></article>
+      <article><span>03</span><div class="workflow-icon">↗</div><h3>Publish</h3><p>Send now to selected WhatsApp destinations or schedule for the channel timezone.</p></article>
+      <article><span>04</span><div class="workflow-icon">⌁</div><h3>Track</h3><p>Follow delivery, failures, retries, history, analytics, and channel health.</p></article>
+    </div>
+  </section>
+
+  <section class="section capabilities">
+    <div class="container split-heading" data-reveal>
+      <div><p class="eyebrow">Core capabilities</p><h2>Everything your team needs<br />to publish <em>with control.</em></h2></div>
+      <a class="text-link arrow-link" href="/features">Explore all features <span>→</span></a>
+    </div>
+    <div class="container capability-grid" data-feature-highlights data-reveal>
+      {website.features.slice(0, 6).map((feature, index) => (
+        <a href={feature.href || `/features/${feature.slug}`} class:list={['capability-card', index === 0 && 'capability-featured']} data-feature-card>
+          <div class="capability-number">0{index + 1}</div>
+          <div class:list={['capability-symbol', `symbol-${index + 1}`]} aria-hidden="true">{['◈', '✦', '◷', '⌁', '◎', '▱'][index]}</div>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+          <span class="card-arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section audience-section">
+    <div class="container center-heading" data-reveal>
+      <p class="eyebrow">Built for daily publishers</p>
+      <h2>One platform. <em>Different scales.</em></h2>
+      <p>Start focused and add operational depth as your team grows.</p>
+    </div>
+    <div class="container audience-grid" data-reveal>
+      <article><span class="audience-tag">Solo</span><div class="audience-art art-community"><i></i><i></i><i></i></div><h3>Community managers</h3><p>Run repeatable updates with one organized channel, templates, destinations, schedules, and history.</p><a href="/solutions/community-managers">Explore solution →</a></article>
+      <article><span class="audience-tag">Team</span><div class="audience-art art-team"><i></i><i></i><i></i></div><h3>Small teams</h3><p>Coordinate editors, channels, manager review, scheduling, and connected publishing.</p><a href="/solutions/teams">Explore solution →</a></article>
+      <article><span class="audience-tag">Scale</span><div class="audience-art art-agency"><i></i><i></i><i></i></div><h3>Agencies</h3><p>Structure multiple brands with analytics, API, webhooks, audit history, and exports.</p><a href="/solutions/agencies">Explore solution →</a></article>
+    </div>
+  </section>
+
+  <section class="section integrations-band">
+    <div class="container integrations-layout" data-reveal>
+      <div>
+        <p class="eyebrow light">Connected publishing</p>
+        <h2>Start with WhatsApp.<br /><em>Extend when you need to.</em></h2>
+        <p>WhatsApp stays at the center. Eligible plans can turn published content into WordPress articles and connected Facebook Page posts.</p>
+        <a class="button button-light" href="/integrations">Explore integrations <span>→</span></a>
+      </div>
+      <div class="orbit-visual" aria-label="GroupWire connects publishing workflows to WhatsApp, WordPress, and Facebook" role="img">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <span class="integration-node node-center"><b>G</b></span>
+        <span class="integration-node node-wa">WA</span>
+        <span class="integration-node node-wp">W</span>
+        <span class="integration-node node-fb">f</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mobile-section">
+    <div class="container mobile-layout" data-reveal>
+      <div class="mobile-copy">
+        <p class="eyebrow">Work anywhere</p>
+        <h2>Your publishing workspace,<br /><em>in your pocket.</em></h2>
+        <p>Install GroupWire as a PWA, work from mobile or desktop, and receive web push notifications about the events that matter.</p>
+        <ul class="check-list"><li>Installable on mobile and desktop</li><li>Offline fallback</li><li>Web push notifications</li><li>Responsive daily workflows</li></ul>
+        <a class="text-link arrow-link" href="/features/mobile-pwa">Discover the mobile PWA <span>→</span></a>
+      </div>
+      <div class="phone-feature">
+        <ProductMockup compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section security-strip">
+    <div class="container security-layout" data-reveal>
+      <div class="security-shield" aria-hidden="true">✓</div>
+      <div><p class="eyebrow light">Workspace control</p><h2>Built for real teams.<br /><em>Protected for real work.</em></h2></div>
+      <div><p>Roles, channel assignments, email verification, password protection, and TOTP two-factor authentication keep access in the right hands.</p><a href="/security">Read about security →</a></div>
+    </div>
+  </section>
+
+  <section class="section pricing-teaser">
+    <div class="container split-heading" data-reveal>
+      <div><p class="eyebrow">Simple, scalable plans</p><h2>Start with the essentials.<br /><em>Scale with confidence.</em></h2></div>
+      <p>Every plan includes the core WhatsApp publishing workflow. Add integrations, advanced analytics, and developer tools as operations grow.</p>
+    </div>
+    <div class="container mini-pricing" data-reveal>
+      {website.plans.map((plan) => (
+        <article class:list={[plan.slug === 'pro' && 'featured']}>
+          {plan.slug === 'pro' && <span class="popular-label">Most popular</span>}
+          <h3>{plan.name}</h3><p>{plan.description}</p>
+          <strong>${plan.monthlyPrice.amountCents / 100}<small>/mo</small></strong>
+          <span>{plan.trialDays}-day free trial</span>
+        </article>
+      ))}
+      <a class="button" href="/pricing">Compare all plans <span>→</span></a>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container narrow center-heading" data-reveal><p class="eyebrow">Common questions</p><h2>Everything you need to know.</h2></div>
+    <div class="container narrow" data-reveal><FaqList compact={true} /></div>
+    <div class="center-action"><a class="text-link arrow-link" href="/faq">View all questions <span>→</span></a></div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container center-heading" data-reveal>
+      <p class="eyebrow light">Ready to publish with control?</p>
+      <h2>Bring structure to<br /><em>WhatsApp publishing.</em></h2>
+      <p>Create a workspace, connect a channel, and prepare your first post.</p>
+      <div class="hero-actions"><a class="button button-light" href="https://bo.groupwire.cloud/signup">Start free <span>→</span></a><a class="text-link light-link" href="/pricing">View pricing</a></div>
+    </div>
+  </section>
+</Layout>
